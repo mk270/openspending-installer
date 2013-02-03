@@ -27,3 +27,8 @@ commandline opts:
   --virtualenv your virtualenv command (default: virtualenv
   --solr-dir the directory you extracted solr to
 
+Pip cache
+---------
+
+You can make pip cache downloaded python dependencies; see the example
+pip.conf in this repo
