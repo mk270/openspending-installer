@@ -76,5 +76,6 @@ fi
 createdb $CREATEDBOPTS $DBNAME;
 
 cat development.ini_tmpl | \
-	sed "s/^openspending.db.url = .*$/openspending.db.url = postgresql://${DBUSER}@localhost/${DBNAME}" > \
+	sed "s/^openspending.db.url = .*$/openspending.db.url = postgresql:\/\/${DBUSER}@localhost\/${DBNAME}/" > \
 	development.ini
+
