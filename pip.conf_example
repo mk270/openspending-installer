@@ -1,0 +1,5 @@
+# stick this in your ~/.pip/pip.config
+# mkdir ~/.pip/cache
+
+[global]
+download-cache=/home/YOURUSERNAME/.pip/cache
