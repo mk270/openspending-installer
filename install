@@ -95,6 +95,11 @@ setup_db () {
 	ostool development.ini db init
 }
 
+setup_docs () { 
+	git submodule init && git submodule update
+	(cd doc && make clean html)
+}
+
 git clone $GIT_REPO $TARGET_DIR
 cd $TARGET_DIR
 
@@ -103,10 +108,8 @@ install_requirements
 clone_js
 setup_dev_ini # $DBUSER $DBNAME
 setup_db # $DBUSER $DBNAME
+setup_docs
 
-
-git submodule init && git submodule update
-(cd doc && make clean html)
 
 # SOLR
 
