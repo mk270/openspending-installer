@@ -10,6 +10,7 @@ JS_REPO=http://github.com/openspending/openspendingjs.git
 TARGET_DIR=openspending
 VIRTUALENV=virtualenv
 CREATEDBOPTS="-E utf-8"
+SOLR_DIR=solr
 
 while [ $# -gt 0 ];
 do
@@ -36,6 +37,10 @@ do
 		  ;;
     --virtualenv)
       VIRTUALENV=$2
+      shift 2
+      ;;
+    --solr-dir)
+      SOLD_DIR=$2
       shift 2
       ;;
 		*)
@@ -76,3 +81,11 @@ fi
 createdb $CREATEDBOPTS $DBNAME;
 
 cp development.ini_tmpl development.ini
+
+
+# SOLR
+
+PWD=`pwd`
+CONFIG="$PWD/$TARGET_DIR/solr/openspending_schema.xml"
+mv $SOLR_DIR/example/solr/collection1/conf/schema.xml $SOLR_DIR/example/solr/collection1/conf/schema.xml.back
+ln -s $CONFIG $SOLR_DIR/example/solr/collection1/conf/schema.xml
