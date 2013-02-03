@@ -67,6 +67,6 @@ pip install psycopg2
 if [ $DBUSER ]; then
   CREATEDBOPTS="$CREATEDBOPTS --owner $DBUSER";
 fi  
-createdb $CREATEDBOPTS openspending;
+createdb $CREATEDBOPTS $DBNAME;
 
 cp development.ini_tmpl development.ini
