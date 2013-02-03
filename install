@@ -79,3 +79,7 @@ cat development.ini_tmpl | \
 	sed "s/^openspending.db.url = .*$/openspending.db.url = postgresql:\/\/${DBUSER}@localhost\/${DBNAME}/" > \
 	development.ini
 
+ostool development.ini db init
+
+git submodule init && git submodule update
+(cd doc && make clean html)
