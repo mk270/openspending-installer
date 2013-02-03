@@ -76,7 +76,8 @@ install_requirements () {
 
 clone_js () {
 	git clone $JS_REPO
-	ln -s openspendingjs openspending/ui/public/static/openspendingjs 
+  PWD=`pwd`
+	ln -s "$PWD/openspendingjs" openspending/ui/public/static/openspendingjs 
 }
 
 setup_dev_ini () {
