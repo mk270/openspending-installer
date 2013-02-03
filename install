@@ -79,6 +79,12 @@ clone_js () {
 	ln -s openspendingjs openspending/ui/public/static/openspendingjs 
 }
 
+setup_dev_ini () {
+	cp development.ini_tmpl development.ini
+	cat development.ini_tmpl | \
+		sed "s/^openspending.db.url = .*$/openspending.db.url = postgresql:\/\/${DBUSER}@localhost\/${DBNAME}/" > \
+		development.ini
+}
 
 setup_db () {
 	local CREATEDBOPTS=""
@@ -86,6 +92,7 @@ setup_db () {
 		CREATEDBOPTS="$CREATEDBOPTS --owner $DBUSER"
 	fi  
 	createdb $CREATEDBOPTS $DBNAME
+	ostool development.ini db init
 }
 
 git clone $GIT_REPO $TARGET_DIR
@@ -94,15 +101,9 @@ cd $TARGET_DIR
 setup_virtualenv
 install_requirements
 clone_js
-setup_db
+setup_dev_ini # $DBUSER $DBNAME
+setup_db # $DBUSER $DBNAME
 
-cp development.ini_tmpl development.ini
-
-cat development.ini_tmpl | \
-	sed "s/^openspending.db.url = .*$/openspending.db.url = postgresql:\/\/${DBUSER}@localhost\/${DBNAME}/" > \
-	development.ini
-
-ostool development.ini db init
 
 git submodule init && git submodule update
 (cd doc && make clean html)
