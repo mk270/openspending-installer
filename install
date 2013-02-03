@@ -25,6 +25,10 @@ do
 		  TARGET_DIR=$2
 		  shift 2
 		  ;;
+		--db-user)
+		  DBUSER=$2
+		  shift 2
+		  ;;
 		*)
 		  echo ${prog_name}: unrecognised option
 		  exit 1
