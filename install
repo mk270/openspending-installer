@@ -70,4 +70,6 @@ if [ $DBUSER ]; then
 fi  
 createdb $CREATEDBOPTS $DBNAME;
 
-cp development.ini_tmpl development.ini
+cat development.ini_tmpl | \
+	sed "s/^openspending.db.url = .*$/openspending.db.url = postgresql://${DBUSER}@localhost/${DBNAME}" > \
+	development.ini
