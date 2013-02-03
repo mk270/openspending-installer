@@ -57,12 +57,6 @@ if [ -d $TARGET_DIR ]; then
 fi
 
 
-git clone $GIT_REPO $TARGET_DIR
-cd $TARGET_DIR
-
-git clone $JS_REPO
-ln -s openspendingjs openspending/ui/public/static/openspendingjs
-
 
 setup_virtualenv () {
 # should explicitly use python2.7
@@ -80,14 +74,27 @@ install_requirements () {
 	pip install psycopg2
 }
 
+clone_js () {
+	git clone $JS_REPO
+	ln -s openspendingjs openspending/ui/public/static/openspendingjs 
+}
+
+
+setup_db () {
+	local CREATEDBOPTS=""
+	if [ $DBUSER ]; then
+		CREATEDBOPTS="$CREATEDBOPTS --owner $DBUSER"
+	fi  
+	createdb $CREATEDBOPTS $DBNAME
+}
+
+git clone $GIT_REPO $TARGET_DIR
+cd $TARGET_DIR
+
 setup_virtualenv
 install_requirements
-
-
-if [ $DBUSER ]; then
-  CREATEDBOPTS="$CREATEDBOPTS --owner $DBUSER";
-fi  
-createdb $CREATEDBOPTS $DBNAME;
+clone_js
+setup_db
 
 cp development.ini_tmpl development.ini
 
