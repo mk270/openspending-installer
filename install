@@ -103,7 +103,8 @@ setup_docs () {
 setup_solr () {
 	PWD=`pwd`
 	CONFIG="$PWD/$TARGET_DIR/solr/openspending_schema.xml"
-	mv $SOLR_DIR/example/solr/collection1/conf/schema.xml $SOLR_DIR/example/solr/collection1/conf/schema.xml.back
+	mv $SOLR_DIR/example/solr/collection1/conf/schema.xml \
+		$SOLR_DIR/example/solr/collection1/conf/schema.xml.back
 	ln -s $CONFIG $SOLR_DIR/example/solr/collection1/conf/schema.xml
 }
 
