@@ -56,29 +56,45 @@ if [ -d $TARGET_DIR ]; then
 	exit 1
 fi
 
+
+
+setup_virtualenv () {
+# should explicitly use python2.7
+	$VIRTUALENV ./pyenv
+
+	set +u
+	source ./pyenv/bin/activate
+	set -u
+}
+
+install_requirements () {
+	pip install nose==1.1.2
+	pip install PasteScript==1.7.5
+	pip install -r requirements.txt -e .
+	pip install psycopg2
+}
+
+clone_js () {
+	git clone $JS_REPO
+	ln -s openspendingjs openspending/ui/public/static/openspendingjs 
+}
+
+
+setup_db () {
+	local CREATEDBOPTS=""
+	if [ $DBUSER ]; then
+		CREATEDBOPTS="$CREATEDBOPTS --owner $DBUSER"
+	fi  
+	createdb $CREATEDBOPTS $DBNAME
+}
+
 git clone $GIT_REPO $TARGET_DIR
 cd $TARGET_DIR
 
-# should explicitly use python2.7
-$VIRTUALENV ./pyenv
-
-set +u
-source ./pyenv/bin/activate
-set -u
-
-pip install nose==1.1.2
-pip install PasteScript==1.7.5
-
-pip install -r requirements.txt -e .
-git clone $JS_REPO
-ln -s openspendingjs openspending/ui/public/static/openspendingjs
-
-pip install psycopg2
-
-if [ $DBUSER ]; then
-  CREATEDBOPTS="$CREATEDBOPTS --owner $DBUSER";
-fi  
-createdb $CREATEDBOPTS $DBNAME;
+setup_virtualenv
+install_requirements
+clone_js
+setup_db
 
 cp development.ini_tmpl development.ini
 
