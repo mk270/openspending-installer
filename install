@@ -69,6 +69,8 @@ setup_virtualenv () {
 
 install_requirements () {
 	pip install nose==1.1.2
+	pip install paste
+	pip install pastedeploy
 	pip install PasteScript==1.7.5
 	pip install -r requirements.txt -e .
 	pip install psycopg2
