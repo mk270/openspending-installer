@@ -11,6 +11,7 @@ wget http://www.mirrorservice.org/sites/ftp.apache.org/lucene/solr/4.1.0/solr-4.
 cd ~
 tar xzvf /tmp/solr-4.1.0.tgz
 
+sudo -u postgres createuser -s vagrant
 
 rm -rf -- openspending-installer
 git clone https://github.com/openspending/openspending-installer
