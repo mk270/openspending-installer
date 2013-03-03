@@ -5,10 +5,11 @@ set -eu
 export DEBIAN_FRONTEND=noninteractive
 apt-get update > /dev/null
 apt-get --yes install git rabbitmq-server postgresql-9.1 \
-	python-virtualenv python-dev
+	python-virtualenv python-dev \
+	libxslt1-dev postgresql-server-dev-9.1
 
 cd /tmp
-wget http://www.mirrorservice.org/sites/ftp.apache.org/lucene/solr/4.1.0/solr-4.1.0.tgz
+wget -q http://www.mirrorservice.org/sites/ftp.apache.org/lucene/solr/4.1.0/solr-4.1.0.tgz
 cd ~
 tar xzf /tmp/solr-4.1.0.tgz
 
