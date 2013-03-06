@@ -1,0 +1,11 @@
+#!/bin/bash
+
+
+(cd ~/solr-4.1.0/example && \
+	java -Dsolr.velocity.enabled=false -jar start.jar) \
+	> /tmp/solr.log 2>/tmp/solr.err
+
+cd openspending
+. pyenv/bin/activate
+paster celeryd development.ini > /tmp/celery.log 2> /tmp/celery.err &
+paster serve --reload development.ini
