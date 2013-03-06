@@ -6,7 +6,8 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get update > /dev/null
 apt-get --yes install git rabbitmq-server postgresql-9.1 \
 	python-virtualenv python-dev \
-	libxslt1-dev postgresql-server-dev-9.1
+	libxslt1-dev postgresql-server-dev-9.1 \
+	make
 
 cat > ~/hba.patch <<EOF
 --- a/pg_hba.conf       2013-03-03 03:00:59.613485177 +0000
@@ -39,4 +40,5 @@ git clone https://github.com/openspending/openspending-installer
 
 ./openspending-installer/install \
 	--db-user openspending \
-	--solr-dir solr-4.1.0
+	--solr-dir ~/solr-4.1.0
+
