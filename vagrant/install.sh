@@ -25,9 +25,10 @@ EOF
 
 fix_pghba () { ( cd /etc/postgresql/9.1/main/ ; patch -p1 < ~/hba.patch ) ; }
 
-fix_pghba && /etc/init.d/postgreql restart \
-	|| (cat /etc/postgresql/9.1/main/pg_hba.conf; false)
-
+if [ "$TRAVIS" -a "$CI" ]; then
+	fix_pghba && /etc/init.d/postgreql restart \
+		|| (cat /etc/postgresql/9.1/main/pg_hba.conf; false)
+fi
 
 cd /tmp
 wget -q http://www.mirrorservice.org/sites/ftp.apache.org/lucene/solr/4.1.0/solr-4.1.0.tgz
