@@ -25,7 +25,7 @@ EOF
 
 fix_pghba () { ( cd /etc/postgresql/9.1/main/ ; patch -p1 < ~/hba.patch ) ; }
 
-if [ "$TRAVIS" -a "$CI" ]; then
+if ! [ "$TRAVIS" -o "$CI" ]; then
 	fix_pghba && /etc/init.d/postgreql restart \
 		|| (cat /etc/postgresql/9.1/main/pg_hba.conf; false)
 fi
