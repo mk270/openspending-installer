@@ -3,7 +3,7 @@
 set -eu
 prog_name=$(basename $0)
 
-DBUSER=
+DBUSER=openspending
 DBNAME=openspending
 DBPASS=openspending
 GIT_REPO=http://github.com/openspending/openspending.git
@@ -99,7 +99,7 @@ setup_db () {
 	if [ $DBUSER ]; then
 		CREATEDBOPTS="$CREATEDBOPTS --owner $DBUSER"
 	fi  
-	createdb $CREATEDBOPTS $DBNAME
+	env PGPASSWORD="$DBPASS" createdb -U "$DBUSER" $CREATEDBOPTS $DBNAME
 	ostool development.ini db init
 }
 
