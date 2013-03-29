@@ -42,7 +42,7 @@ sudo -u postgres psql -c "alter user openspending password 'openspending';"
 rm -rf -- openspending-installer
 git clone https://github.com/openspending/openspending-installer
 
-#./openspending-installer/install \
-#	--db-user openspending \
-#	--solr-dir ~/solr-4.1.0
+./openspending-installer/install \
+	--db-user openspending \
+	--solr-dir ~/solr-4.1.0
 
