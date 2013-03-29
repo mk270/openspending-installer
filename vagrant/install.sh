@@ -31,10 +31,8 @@ if ! [ "$TRAVIS" -o "$CI" ]; then
 		|| (cat /etc/postgresql/9.1/main/pg_hba.conf; false)
 fi
 
-cd /tmp
-wget http://archive.apache.org/dist/lucene/solr/4.1.0/solr-4.1.0.tgz
-cd ~
-tar xzf /tmp/solr-4.1.0.tgz
+(cd /tmp; wget http://archive.apache.org/dist/lucene/solr/4.1.0/solr-4.1.0.tgz)
+(cd ~; tar xzf /tmp/solr-4.1.0.tgz)
 
 sudo -u postgres createuser -s openspending
 sudo -u postgres psql -c "alter user openspending password 'openspending';"
