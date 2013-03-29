@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -eu
+set -x
 
 export DEBIAN_FRONTEND=noninteractive
 apt-get update > /dev/null
