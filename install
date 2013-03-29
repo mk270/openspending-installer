@@ -119,7 +119,7 @@ setup_solr () {
 git clone $GIT_REPO $TARGET_DIR
 cd $TARGET_DIR
 
-setup_virtualenv
+#setup_virtualenv
 install_requirements
 clone_js
 setup_dev_ini # $DBUSER $DBNAME
