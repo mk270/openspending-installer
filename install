@@ -61,12 +61,6 @@ do
 done
 
 
-if [ -d $TARGET_DIR ]; then
-	echo ${prog_name}: Directory openspending already exists
-	exit 1
-fi
-
-
 
 setup_virtualenv () {
 # should explicitly use python2.7
@@ -120,6 +114,11 @@ setup_solr () {
 		$SOLR_DIR/example/solr/collection1/conf/schema.xml.back
 	ln -sfT $CONFIG $SOLR_DIR/example/solr/collection1/conf/schema.xml
 }
+
+if [ -d $TARGET_DIR ]; then
+	echo ${prog_name}: Directory openspending already exists
+	exit 1
+fi
 
 git clone $GIT_REPO $TARGET_DIR
 cd $TARGET_DIR
