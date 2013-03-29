@@ -49,3 +49,7 @@ git clone https://github.com/openspending/openspending-installer
 	--no-virtualenv \
 	--no-clone
 
+# this probably ought to be in a different location
+
+rm -f test.ini
+sed 's/:18983/:8983/' < test.ini_tmpl > test.ini
