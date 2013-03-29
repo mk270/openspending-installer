@@ -45,5 +45,6 @@ git clone https://github.com/openspending/openspending-installer
 ./openspending-installer/install \
 	--db-user openspending \
 	--solr-dir ~/solr-4.1.0 \
-	--no-virtualenv 
+	--no-virtualenv \
+	--target-dir .
 
