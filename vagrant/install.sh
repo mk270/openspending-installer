@@ -3,7 +3,8 @@
 set -eu
 set -x
 
-SOLR_URL=http://archive.apache.org/dist/lucene/solr/4.1.0/solr-4.1.0.tgz
+#SOLR_URL=http://archive.apache.org/dist/lucene/solr/4.1.0/solr-4.1.0.tgz
+SOLR_URL=http://mk.ucant.org/media/solr-4.1.0-smaller.tgz
 
 export DEBIAN_FRONTEND=noninteractive
 apt-get update > /dev/null
