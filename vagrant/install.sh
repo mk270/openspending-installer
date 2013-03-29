@@ -3,6 +3,8 @@
 set -eu
 set -x
 
+SOLR_URL=http://archive.apache.org/dist/lucene/solr/4.1.0/solr-4.1.0.tgz
+
 export DEBIAN_FRONTEND=noninteractive
 apt-get update > /dev/null
 apt-get --yes install git rabbitmq-server postgresql-9.1 \
@@ -31,7 +33,7 @@ if ! [ "$TRAVIS" -o "$CI" ]; then
 		|| (cat /etc/postgresql/9.1/main/pg_hba.conf; false)
 fi
 
-(cd /tmp; wget http://archive.apache.org/dist/lucene/solr/4.1.0/solr-4.1.0.tgz)
+(cd /tmp; wget $SOLR_URL)
 (cd ~; tar xzf /tmp/solr-4.1.0.tgz)
 
 sudo -u postgres createuser -s openspending
