@@ -54,3 +54,5 @@ git clone https://github.com/openspending/openspending-installer
 
 rm -f test.ini
 sed 's/:18983/:8983/' < test.ini_tmpl > test.ini
+
+$(dirname $0)/boot-solr &
