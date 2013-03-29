@@ -12,6 +12,7 @@ TARGET_DIR=openspending
 VIRTUALENV=virtualenv
 CREATEDBOPTS="-E utf-8"
 SOLR_DIR=solr
+USE_VIRTUALENV=''
 
 while [ $# -gt 0 ];
 do
@@ -47,6 +48,10 @@ do
     --solr-dir)
       SOLR_DIR=$2
       shift 2
+      ;;
+    --use-virtualenv)
+      USE_VIRTUALENV=true
+      shift 1
       ;;
 		*)
 		  echo ${prog_name}: unrecognised option: $1
@@ -119,7 +124,10 @@ setup_solr () {
 git clone $GIT_REPO $TARGET_DIR
 cd $TARGET_DIR
 
-#setup_virtualenv
+if [ -n "$USE_VIRTUALENV ]; then
+	setup_virtualenv
+fi
+
 install_requirements
 clone_js
 setup_dev_ini # $DBUSER $DBNAME
