@@ -32,7 +32,7 @@ if ! [ "$TRAVIS" -o "$CI" ]; then
 fi
 
 cd /tmp
-wget -q http://archive.apache.org/dist/lucene/solr/4.1.0/solr-4.1.0.tgz
+wget http://archive.apache.org/dist/lucene/solr/4.1.0/solr-4.1.0.tgz
 cd ~
 tar xzf /tmp/solr-4.1.0.tgz
 
