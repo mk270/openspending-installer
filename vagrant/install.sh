@@ -20,7 +20,7 @@ do-fix-pg-auth () {
 	$(dirname $0)/fix-pg-auth
 }
 
-start_postgres () {
+start-postgres () {
 	if ! [ "$TRAVIS" -o "$CI" ]; then
 		do-fix-pg-auth && /etc/init.d/postgreql restart \
 			|| (cat /etc/postgresql/9.1/main/pg_hba.conf; false)
