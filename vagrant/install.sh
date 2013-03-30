@@ -21,7 +21,7 @@ if ! [ "$TRAVIS" -o "$CI" ]; then
 		|| (cat /etc/postgresql/9.1/main/pg_hba.conf; false)
 fi
 
-(cd /tmp; wget $SOLR_URL)
+(cd /tmp; wget -O $SOLR_TGZ $SOLR_URL)
 (cd ~; tar xzf $SOLR_TGZ)
 
 sudo -u postgres createuser -s openspending
