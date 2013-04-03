@@ -11,4 +11,5 @@ for countdown in $(seq 1 30); do
 		exit 0
 	fi
 	sleep 1
+done
 exit 1
