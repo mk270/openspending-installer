@@ -1,6 +1,15 @@
 #!/bin/bash
 
+SOLR_PORT=8983
 
 (cd ~/solr-4.1.0/example && \
 	java -Dsolr.velocity.enabled=false -jar start.jar) \
-	> /tmp/solr.log 2>/tmp/solr.err
+	> /tmp/solr.log 2>/tmp/solr.err &
+
+for countdown in $(seq 1 30); do
+	if nc -z localhost $SOLR_PORT ; then
+		exit 0
+	fi
+	sleep 1
+done
+exit 1

@@ -13,7 +13,7 @@ install-packages () {
 	apt-get --yes install git rabbitmq-server postgresql-9.1 \
 		python-virtualenv python-dev \
 		libxslt1-dev postgresql-server-dev-9.1 \
-		make
+		make netcat-openbsd
 }
 
 do-fix-pg-auth () {
@@ -57,7 +57,7 @@ setup-test-ini () {
 }
 
 boot-solr () {
-	$(dirname $0)/boot-solr &
+	$(dirname $0)/boot-solr
 }
 
 install-packages
